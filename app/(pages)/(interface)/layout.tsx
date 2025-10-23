@@ -30,17 +30,22 @@ export default async function DashboardLayout({ children }: { children: React.Re
     }
 
     return (
-      <div className="bg-white">
-        <aside>
+      <div className="bg-gray-50 flex flex-row">
+        <aside className=" w-fit fixed">
        <Sidebar/>
+       
+        </aside>
+        <aside className=" w-20">
+  
+       
         </aside>
    
-        <main className="bg-white">
+        <main className="  grow">
          
           {children} {/* This renders the actual page content */}
         </main>
 
-        <aside><ContextPanel /></aside>
+        <aside className="col-span-2 "><ContextPanel /></aside>
       </div>
     )
   }

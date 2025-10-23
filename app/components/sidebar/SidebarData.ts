@@ -32,32 +32,34 @@ import {// Placeholder for the top logo icon
       // Example of an active state (blue/darker blue in the image)
 
     },
-    {
-      name: 'Dialer',
-      icon: Phone,
-      href: '/dialer',
-      // Example of an active state (blue/darker blue in the image)
+    // {
+    //   name: 'Dialer',
+    //   icon: Phone,
+    //   href: '/dialer',
+    //   // Example of an active state (blue/darker blue in the image)
 
-    },{
+    // },
+    {
       name: 'Messages',
       icon: MessagesSquare,
       href: '/inbox',
           },
-    {
-      name: 'Call Logs',
-      icon: Logs,
-      href: '/logs',
-    },
+    // {
+    //   name: 'Call Logs',
+    //   icon: Logs,
+    //   href: '/logs',
+    // },
   
-    {
-      name: 'Contacts',
-      icon: ContactRound,
-      href: '/contacts',
-    }, {
-      name: 'Forwarding',
-      icon: Forward,
-      href: '/forwarding',
-    },
+    // {
+    //   name: 'Contacts',
+    //   icon: ContactRound,
+    //   href: '/contacts',
+    // }, 
+    // {
+    //   name: 'Forwarding',
+    //   icon: Forward,
+    //   href: '/forwarding',
+    // },
   ];
   
   // --- Middle Section Icons ---

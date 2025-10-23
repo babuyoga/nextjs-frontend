@@ -1,84 +1,51 @@
-// components/ContextPanel.tsx
+'use client';
+import React, { useState } from 'react';
+import ContextPanelTopIcon from '@/app/components/contextualpanel/ContextPanelTopIcon';
+import { panels } from '@/app/components/contextualpanel/panels';
 
-import React from 'react';
-import NotificationItem from '@/app/components/contextualpanel/NotificationItem'; // Import the data
-import ContextPanelTopIcon from './ContextPanelTopIcon';
-
-// Mock data for the notifications to display
-const mockNotifications = [
-  {
-    title: 'Enjoy using the app?',
-    time: 'Now',
-    description: 'Description about the notification',
-    isActionable: true,
-  },
-  {
-    title: 'Enjoy using the app?',
-    time: 'Now',
-    description: 'Description about the notification',
-    isActionable: false, // Non-actionable item
-  },
-  {
-    title: 'Enjoy using the app?',
-    time: 'Now',
-    description: 'Description about the notification',
-    isActionable: false,
-  },
-  {
-    title: 'Enjoy using the app?',
-    time: 'Now',
-    description: 'Description about the notification',
-    isActionable: false,
-  },
-  {
-    title: 'Enjoy using the app?',
-    time: 'Now',
-    description: 'Description about the notification',
-    isActionable: false,
-  },
-  {
-    title: 'Enjoy using the app?',
-    time: 'Now',
-    description: 'Description about the notification',
-    isActionable: true,
-  },
-];
-
-/**
- * The main component for the right-hand side drawer/context panel.
- * It is fixed to the right and covers the full height.
- */
 const ContextPanel: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('Notifications');
+
+  const PanelComponent = panels[activeTab];
+
+  // Mock virtual number
+  const virtualNumber = {
+    number: '+1 234 567 890',
+    createdAt: '2025-10-01',
+    status: 'Active',
+  };
+
+  const panelProps: Record<string, any> = {
+    Settings: {
+      virtualNumber,
+      onDeleteNumber: () => alert('Delete number clicked'),
+      onGoToSubscription: () => alert('Go to Subscription clicked'),
+    },
+    Support: {
+      onSubmit: (msg: string) => alert(`Message sent: ${msg}`),
+    },
+    Notifications: {},
+  };
+
   return (
-    // Fixed positioning on the right side
-    <div className="fixed top-0 right-0 h-full w-80 bg-gray-100/50 shadow-xl z-50 overflow-y-auto">
-      {/* Top Bar Section */}
+    <div className="top-0 right-0 h-full w-80 bg-gray-100/50 shadow-xl z-50 overflow-y-auto">
+      {/* Top icons */}
       <div className="flex justify-end items-center pt-6 p-3 bg-white border-b border-gray-200">
-        
-        {/* Left Side Icons */}
-      <ContextPanelTopIcon/>
-
-      
+        <ContextPanelTopIcon setActiveTab={setActiveTab} />
       </div>
 
-      {/* Clear All Header */}
-      <div className="p-3 text-right">
-        <button className="text-sm text-gray-500 hover:text-gray-700">
-          Clear all
-        </button>
-      </div>
+      {/* Clear all for notifications */}
+      {activeTab === 'Notifications' && (
+        <div className="p-3 text-right">
+          <button className="text-sm text-gray-500 hover:text-gray-700">
+            Clear all
+          </button>
+        </div>
+      )}
 
-      {/* Notifications List */}
+      {/* Dynamic Panel */}
       <div className="gap-1 flex flex-col">
-        {mockNotifications.map((notification, index) => (
-          <NotificationItem
-            key={index}
-            title={notification.title}
-            time={notification.time}
-            description={notification.description}
-            isActionable={notification.isActionable}
-          />
-        ))}
+        {PanelComponent ? <PanelComponent {...panelProps[activeTab]} /> : null}
       </div>
     </div>
   );

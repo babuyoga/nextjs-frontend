@@ -19,7 +19,7 @@ export function Sidebar() {
   return (
     <div
       className="
-        fixed left-0 top-0 h-screen w-20 
+       left-0 top-0 h-screen w-20 
         bg-white border-r border-gray-100
         flex flex-col items-center justify-between
         pt-3 pb-6 shadow-xl z-20
